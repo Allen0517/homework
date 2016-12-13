@@ -1,0 +1,148 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Article;
+
+class ArticleCRUDController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $articles = Article::orderBy('id','DESC')->paginate(5);
+        return view('ArticleCRUD.index',compact('articles'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('ArticleCRUD.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'summary' => 'required',
+        ]);
+        $article = new Article;
+        if($request->allFiles()){
+            $imageName = time().file('image')->getClientOriginalName() . '.' .
+                $request->file('image')->getClientOriginalExtension();
+$path = base_path() . '/public/images/photo/'.$imageName;
+            $request->file('image')->move(
+                base_path() . '/public/images/photo/', $imageName);
+            $article->image = $imageName;
+        }
+        $article->title = $request->input('title');
+        $article->body = $request->input('body');
+        $article->summary = $request->input('summary');
+        $article->publish_date = $request->input('publish_date');
+        $article->sections = $request->input('sections');
+        $article->image_address = $request->input('image_address');
+        $article->editor = $request->input('editor');
+        $article->save();
+        return redirect()->route('articleCRUD.index')
+            ->with('success','Article created successfully');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $article = Article::find($id);
+        return view('ArticleCRUD.show',compact('article'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $article = Article::find($id);
+        return view('ArticleCRUD.edit',compact('article'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+       var_dump($request->all());
+        $this->validate($request, [
+            'title' => 'required',
+            'summary' => 'required',
+        ]);
+        $article = Article::find($id);
+
+        $image = $request->file('image');
+        $path = $request->file('image')->path();
+        echo $path;
+        exit();
+
+        $imageName = time().file('image')->getClientOriginalName() . '.' .
+            $request->file('image')->getClientOriginalExtension();
+        $path = base_path() . '/public/images/photo/'.$imageName;
+        if($request->allFiles()){
+            $imageName = time().file('image')->getClientOriginalName() . '.' .
+                $request->file('image')->getClientOriginalExtension();
+            $path = base_path() . '/public/images/photo/'.$imageName;
+            $request->file('image')->move(
+                base_path() . '/public/images/photo/', $imageName);
+            $article->image = $imageName;
+        }
+
+        $article->title = $request->input('title');
+        $article->body = $request->input('body');
+        $article->summary = $request->input('summary');
+        $article->publish_date = $request->input('publish_date');
+        $article->sections = $request->input('sections');
+        $article->image_address = $request->input('image_address');
+        $article->editor = $request->input('editor');
+        $article->save();
+        return redirect()->route('articleCRUD.index')
+            ->with('success','Article updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Article::find($id)->delete();
+        return redirect()->route('articleCRUD.index')
+            ->with('success','Article deleted successfully');
+    }
+}
