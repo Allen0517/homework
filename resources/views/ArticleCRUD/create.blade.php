@@ -21,12 +21,12 @@
             </ul>
         </div>
     @endif
-    {!! Form::open(array('route' => 'articleCRUD.store','method'=>'POST')) !!}
+    {!! Form::open(array('route' => 'articleCRUD.store','enctype'=>"multipart/form-data",'method'=>'POST')) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Title:</strong>
-                {!! Form::text('title',null, array('placeholder' => 'Title','enctype'=>"multipart/form-data",'class' => 'form-control')) !!}
+                {!! Form::text('title',null, array('placeholder' => 'Title','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

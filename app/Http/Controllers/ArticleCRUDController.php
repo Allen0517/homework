@@ -48,9 +48,6 @@ class ArticleCRUDController extends Controller
         ]);
         $article = new Article;
         $image = $request->file('image');
-        print_r($image);
-        exit();
-
         if($request->allFiles()){
             $imageName = $image->getClientOriginalName();
             $path = base_path() . '/public/images/photo/'.$imageName;
