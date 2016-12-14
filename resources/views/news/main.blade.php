@@ -25,93 +25,75 @@
             <div class="m_contentr1">
                 <div class="row">
                     <div class="col-sm-8">
+                        <?php
+                            $article1 = $top_article[0];
+                        $image_name = $article1->image;
+                        if ($image_name!==''){
+                            $image_path = "http://localhost/olivetnews" . '/public/images/photo/'.$image_name;
+                        }else{
+                            $image_path = '';
+                        }
+                        $section_show = array();
+                        $section_array = explode('|', $article1->sections);
+                        $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');
+                        foreach($section_array as $value){
+                            $section_show[$value]= $section_full_array[$value];
+                        }
+                        ?>
                         <div class=" topnews_img">
-                            <a href="/article/2016/12/09/1097/olivet-university-olivet-winter-art-show-2016-to-share-grace-&amp;-joy-in-christmas-season.htm">
-                                <img src="http://www.olivetuniversity.edu/images_articles/files/ocad/IMG_osad.jpg" class="img-responsive" alt="">
+                            <a href="http://localhost/olivetnews/public/news/article/{{$article1->id}}">
+                                <img src="{{ $image_path==''?($article1->image_address): $image_path}}" class="img-responsive" alt="{{$article1->image_address}}">
                             </a>
                         </div>
                         <a class="category category_artd" href="javascript:void(0)">
-                            <span>Arts &amp; Design</span>
+                            <span>{{ implode("|",$section_show) }}</span>
                         </a>
                         <div class="">
-                            <h3><a href="/article/2016/12/09/1097/olivet-university-olivet-winter-art-show-2016-to-share-grace-&amp;-joy-in-christmas-season.htm">
-                                    Olivet Winter Art Show 2016 to Share Grace & Joy in Christmas Season              		</a></h3>
-                            <span class="headline_datetime">Dec 09, 2016</span>
-                            <p>Christmas is the season to remember and share God&#039;s love, Olivet School of Art and Design is going to reach out to friends and neighbors in a special way through the Winter Art Show.</p>
+                            <h3><a href="http://localhost/olivetnews/public/news/article/{{$article1->id}}">
+                                    {{$article1->title}}         		</a></h3>
+                            <span class="headline_datetime">{{$article1->publish_date}}</span>
+                            <p>{{$article1->sumarry}}</p>
                         </div>
                     </div>
                     @include('layouts.headlines')
                     <div class="clearfix"></div>
+                    <?php $article[0] = $top_article[1];$article[1] = $top_article[2];?>
+                    @foreach($article as $item)
+                        <?php
+                        $image_name = $item->image;
+                        if ($image_name!==''){
+                            $image_path = "http://localhost/olivetnews" . '/public/images/photo/'.$image_name;
+                        }else{
+                            $image_path = '';
+                        }
+                        $section_show = array();
+                        $section_array = explode('|', $item->sections);
+                        $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');
+                        foreach($section_array as $value){
+                            $section_show[$value]= $section_full_array[$value];
+                        }
+                        ?>
                     <div class="col-sm-4 vice_news">
                         <div class=" topnews_img">
-                            <a href="/article/2016/11/29/1096/olivet-university-mdiv-students-engage-in-dialogue-on-cross-cultural-mission.htm">
-                                <img src="http://www.olivetuniversity.edu/images_articles/files/otcs/Cross-Cultural-Mission.jpg" class="img-responsive" alt="">
+                            <a href="http://localhost/olivetnews/public/news/article/{{$item->id}}">
+                                <img src="{{ $image_path==''?($item->image_address): $image_path}}" alt="{{ $item->image_address }}" class="img-responsive">
                             </a>
                         </div>
                         <a class="category category_theology" href="javascript:void(0)">
-                            <span>Theology</span>
+                            <span>{{ implode("|",$section_show) }}</span>
                         </a>
                         <div class="">
-                            <h3><a href="/article/2016/11/29/1096/olivet-university-mdiv-students-engage-in-dialogue-on-cross-cultural-mission.htm">MDiv Students Engage in Dialogue on Cross-Cultural Mission</a></h3>
-                            <span class="headline_datetime">Nov 29, 2016</span>
-                            <p>Cross-cultural mission is an area of great interest especially to Olivet University students around the world. During the doctoral colloquium of the Zinzendorf School of Doctoral Studies at its Riverside</p>
+                            <h3><a href="http://localhost/olivetnews/public/news/article/{{$item->id}}">{{$item->title}}</a></h3>
+                            <span class="headline_datetime">{{$item->publish_date}}</span>
+                            <p>{{$item->summary}}</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 vice_news">
-                        <div class=" topnews_img">
-                            <a href="/article/2016/11/28/1095/olivet-university-ny-mba-students-present-projects-on-strategy-formulation.htm">
-                                <img src="http://www.olivetuniversity.edu/images_articles/files/ocb/NY_MBA_Students.jpg" class="img-responsive" alt="">
-                            </a>
-                        </div>
-                        <a class="category category_bussiness" href="javascript:void(0)">
-                            <span>Business</span>
-                        </a>
-                        <div class="">
-                            <h3><a href="/article/2016/11/28/1095/olivet-university-ny-mba-students-present-projects-on-strategy-formulation.htm">NY MBA Students Present Projects on Strategy Formulation</a></h3>
-                            <span class="headline_datetime">Nov 28, 2016</span>
-                            <p>MBA students at Olivet Business School (OBS) New York Extension present recent projects on strategy formulation covering situation analysis, business strategy and corporate strategy.</p>
-                        </div>
-                    </div>
+                    @endforeach
                     @include('layouts.events')
                 </div>
             </div>
 
-            <div class="m_contentr3">
-                <div class="various_menu">
-                    <ul class="nav nav-tabs">
-                        <li class="latest"><a class="current" data-type="latest" href="javascript:void(0);">LATEST </a></li>
-                        <li class="spotlights"><a data-type="spotlights" href="javascript:void(0);">Spotlights </a></li>
-                        <li class="slideshow"><a data-type="slideshow" href="javascript:void(0);">Photos/Slideshow </a></li>
-                        <li class="videos"><a data-type="videos" href="javascript:void(0);"> Video</a></li>
-                    </ul>
-                </div>
-                <div class="menu_latest" id="menu_latest" style="min-height:700px;">
-                    @foreach ($articles as $key=>$article)
-                        <div class="news-list">
-                            <div class="row">
-                                <div class="col-sm-2 col-xs-5 newslist_img">
-                                    <a href="/article/2016/11/04/1094/olivet-university-zsds-annual-doctoral-colloquium-kicks-off-in-riverside.htm"><img  class="img-responsive" src="{{ $article->image_address }}" alt=""></a>
-                                </div>
-                                <div class="col-sm-8 col-xs-7  newslist_text">
-                                    <a class="category category_theology" href="javascript:void(0)"><span> {{ $article->sections }} </span></a>
-                                    <div class="">
-                                        <h3><a href="/article/2016/11/04/1094/olivet-university-zsds-annual-doctoral-colloquium-kicks-off-in-riverside.htm">{{ $article->title }}</a></h3>
-                                        <span class="news_date">{{ $article->publish_date }}</span>
-                                        <p>{{ $article->body }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2 lable_tag">
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    <div class="next load_more"><a href="/jquery-loadmore">Load More ...</a></div>
-
-                        {{--@yield('content')--}}
-
-            </div>
-        </div>
+            @include('layouts.latest')
     </div>
 </div>
 <!-- Content End -->

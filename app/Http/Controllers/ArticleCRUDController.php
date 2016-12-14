@@ -17,10 +17,10 @@ class ArticleCRUDController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::orderBy('id','DESC')->paginate(5);
+        $articles = Article::orderBy('id','DESC')->paginate(10);
 
         return view('ArticleCRUD.index',compact('articles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

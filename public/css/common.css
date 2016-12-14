@@ -181,7 +181,8 @@ h5.head_titt{ padding-left: 20px; height: 46px; text-transform: uppercase; line-
 .various_menu {background-color: #f3f3f3;}
 .various_menu  ul li a{margin: 0; line-height: 13px; border: none; padding: 20px 45px 16px; color: #7b7e8b; text-transform: uppercase; border-right: 1px solid #fff; font-size: 13px;}
 .various_menu  ul li a:hover, .various_menu  ul li a:focus,.various_menu  ul li a.current { border-radius: 0; color: #947010; background-color: #ddd6c2;}
-.newslist_img { padding-right: 0;}
+.newslist_img { padding-right: 0;
+    overflow: hidden;}
 .newslist_text { padding-left: 26px; padding-top: 5px; padding-right: 0;}
 .news-list { padding: 15px 0; border-bottom: 1px solid #e9e9e9;}
 

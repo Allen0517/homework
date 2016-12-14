@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="Olivet University, Olivet, News, Campus News, Every Thursday evening, book lovers from Olivet Theological College & Seminary gather for sharing as each of them pick up the challenge of reading one book per week this summer." name="keywords">
-    <meta name="description" content="Olivet University, where future leaders and scholars are equipped to change the world for Jesus Christ. Olivet University students come from a wide range of age groups, geographical areas, educational backgrounds, and cultural heritages, creating a rich and challenging educational environment. Every Thursday evening, book lovers from Olivet Theological College & Seminary gather for sharing as each of them pick up the challenge of reading one book per week this summer." />
+    <meta name="description" content="{{$article->summary}}" />
     <meta name="keyphrase" content="Olivet University News, Olivet News" />
-    <title>OTCS Reading Program Enriches Campus Life in Summer - Olivet University News</title>
+    <title>{{$article->title}}</title>
     <meta name="msvalidate.01" content="1041215C1BB846E107FFF683F2966CCD" />
     <meta name="p:domain_verify" content="0d63b3d3525a4ce3df924cbb2a20d05c" />
 @include('layouts.header_script')
@@ -19,6 +19,20 @@
     @include('layouts.header')
 </head>
 <!-- Header End -->
+<?php
+$image_name = $article->image;
+$section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');
+if ($image_name!==''){
+    $image_path = "http://localhost/olivetnews" . '/public/images/photo/'.$image_name;
+}else{
+    $image_path = '';
+}
+$section_show = array();
+$section_array = explode('|', $article->sections);
+foreach($section_array as $value){
+    $section_show[$value]= $section_full_array[$value];
+}
+?>
 <!-- Content Start -->
 <div class="m_content">
     <div class="container">
@@ -28,7 +42,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <a class="category  category_university" href="javascript:void(0)">
-                            <span>{{$article->sections}}</span>
+                            <span>{{ implode("|",$section_show) }}</span>
                         </a>
                         <h3>{{$article->title}}</h3>
                         <!--h6></h6-->
@@ -39,13 +53,7 @@
 
                             <div class="carousel-inner" role="listbox">
                                 <div class="item active">
-                                    <img src="{{$article->image_address}}" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="{{$article->image_address}}" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="{{$article->image_address}}" alt="">
+                                    <img src="{{ $image_path==''?($article->image_address): $image_path}}" alt="{{ $article->image_address }}" class="img-responsive">
                                 </div>
                             </div>
 
@@ -53,10 +61,6 @@
                             <ol class="carousel-indicators">
                                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li><li data-target="#myCarousel" data-slide-to="1" ></li><li data-target="#myCarousel" data-slide-to="2" ></li>			  	</ol>
 
-                            <!--div class="discription">
-                              <p class="discript1">Credit :  Olivet University</p>
-                              <p class="discript2">Description if it is needed.</p>
-                            </div-->
 
                         </div>
                     </div>

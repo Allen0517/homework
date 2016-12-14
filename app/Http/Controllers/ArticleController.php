@@ -16,19 +16,27 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
-//        $headline =
-//            Article::where('customer.name', 'LIKE', "%$findcustomer%")->firstOrFail();
+        $top_articles = Article::where('image', '!=', '')->paginate(3);
 
         return view('news.main', [
             'articles' => $articles,
+            'top_article'=>$top_articles,
         ]);
     }
 
     public function section($sections)
     {
         $articles = Article::where('sections', 'LIKE', "%$sections%")->get();
+
+//        if (empty($articles)){
+//            return back()->withInput();
+//        }
+        $center_articles = Article::where('sections', 'LIKE', "%$sections%")->where('image', '!=', '')->get();
+
         return view('news.section', [
+            'section' => $sections,
             'articles' => $articles,
+            'center_article'=>$center_articles,
         ]);
     }
 
@@ -44,9 +52,9 @@ class ArticleController extends Controller
         return view('news.main',compact('articles'));
     }
 
-    public function article()
+    public function article($id)
     {
-        $article = Article::find(30);
+        $article = Article::find($id);
         return view('news.article', [
             'article' => $article,
         ]);

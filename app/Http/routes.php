@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/news','ArticleController@index');
 Route::get('/news/sections/{section}','ArticleController@section');
-Route::get('/news/article','ArticleController@article');
+Route::get('/news/article/{id}','ArticleController@article');
 Route::get('/news/jquery-loadmore',['as'=>'jquery-loadmore','uses'=>'ArticleController@loadMore']);
 
 

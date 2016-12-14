@@ -45,16 +45,17 @@
                     $section_show[$value]= $section_full_array[$value];
                 }
             ?>
-                @if (Auth::user()->name == "super_admin")
+                @if (Auth::user()->name == "administer")
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $item->title }}</td>
                         <td>{{ $item->body }}</td>
                         <td>{{ $item->summary }}</td>
                         <td>{{ $item->publish_date }}</td>
-                        <td>{{ $item->sections }}</td>
-                        <td><img width="150px" src="{{ $item->image_address }}" alt="{{ $item->image_address }}"></td>
-                        <td>{{ ($item->editor) }}</td>
+                        <td>{{ implode("|",$section_show) }}</td>
+                        {{--<td>{{ $item->sections }}</td>--}}
+                        <td><img width="150px" src="{{ $image_path==''?($item->image_address): $image_path}}" alt="{{ $item->image_address }}"></td>
+                        <td>{{ $item->editor }}</td>
                         <td>
                             <a class="btn btn-info" href="{{ route('articleCRUD.show',$item->id) }}">Show</a>
                             @permission('article-edit')
@@ -68,7 +69,7 @@
                         </td>
                     </tr>
                 @elseif ($item->editor == Auth::user()->name)
-            <tr>
+                    <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->body }}</td>
