@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Article;
+use Illuminate\Support\Facades\Input;
 
 class ArticleCRUDController extends Controller
 {
@@ -17,6 +18,8 @@ class ArticleCRUDController extends Controller
     public function index(Request $request)
     {
         $articles = Article::orderBy('id','DESC')->paginate(5);
+
+
         return view('ArticleCRUD.index',compact('articles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -44,19 +47,27 @@ class ArticleCRUDController extends Controller
             'summary' => 'required',
         ]);
         $article = new Article;
+        $image = $request->file('image');
+        print_r($image);
+        exit();
+
         if($request->allFiles()){
-            $imageName = time().file('image')->getClientOriginalName() . '.' .
-                $request->file('image')->getClientOriginalExtension();
-$path = base_path() . '/public/images/photo/'.$imageName;
-            $request->file('image')->move(
-                base_path() . '/public/images/photo/', $imageName);
-            $article->image = $imageName;
+            $imageName = $image->getClientOriginalName();
+            $path = base_path() . '/public/images/photo/'.$imageName;
+            if(!file_exists($path)){
+                $request->file('image')->move(base_path() . '/public/images/photo/', $imageName);
+                $article->image = $imageName;
+            }else{
+                return redirect()->route('articleCRUD.index')
+                    ->with('Fail','Article updated denied')->withErrors('Image exists！');
+            }
         }
         $article->title = $request->input('title');
         $article->body = $request->input('body');
         $article->summary = $request->input('summary');
         $article->publish_date = $request->input('publish_date');
-        $article->sections = $request->input('sections');
+        $section = $request->input('sections');
+        $article->sections = implode('|',$section);
         $article->image_address = $request->input('image_address');
         $article->editor = $request->input('editor');
         $article->save();
@@ -97,35 +108,29 @@ $path = base_path() . '/public/images/photo/'.$imageName;
      */
     public function update(Request $request, $id)
     {
-       var_dump($request->all());
         $this->validate($request, [
             'title' => 'required',
             'summary' => 'required',
         ]);
         $article = Article::find($id);
-
         $image = $request->file('image');
-        $path = $request->file('image')->path();
-        echo $path;
-        exit();
-
-        $imageName = time().file('image')->getClientOriginalName() . '.' .
-            $request->file('image')->getClientOriginalExtension();
-        $path = base_path() . '/public/images/photo/'.$imageName;
         if($request->allFiles()){
-            $imageName = time().file('image')->getClientOriginalName() . '.' .
-                $request->file('image')->getClientOriginalExtension();
+            $imageName = $image->getClientOriginalName();
             $path = base_path() . '/public/images/photo/'.$imageName;
-            $request->file('image')->move(
-                base_path() . '/public/images/photo/', $imageName);
-            $article->image = $imageName;
-        }
-
+           if(!file_exists($path)){
+               $request->file('image')->move(base_path() . '/public/images/photo/', $imageName);
+               $article->image = $imageName;
+           }else{
+               return redirect()->route('articleCRUD.index')
+                   ->with('Fail','Article updated denied')->withErrors('Image exists！');
+               }
+            }
         $article->title = $request->input('title');
         $article->body = $request->input('body');
         $article->summary = $request->input('summary');
         $article->publish_date = $request->input('publish_date');
-        $article->sections = $request->input('sections');
+        $section = $request->input('sections');
+        $article->sections = implode('|',$section);
         $article->image_address = $request->input('image_address');
         $article->editor = $request->input('editor');
         $article->save();

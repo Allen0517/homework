@@ -31,15 +31,31 @@
             <th width="280px">Action</th>
         </tr>
         @foreach ($articles as $key => $item)
+            <?php
+                $image_name = $item->image;
+                if ($image_name!==''){
+                    $image_path = "http://localhost/olivetnews" . '/public/images/photo/'.$image_name;
+                }else{
+                    $image_path = '';
+                }
+            $section_show = array();
+            $section_array = explode('|', $item->sections);
+            $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');
+                foreach($section_array as $value){
+                    $section_show[$value]= $section_full_array[$value];
+                }
+            ?>
+            @if ($item->editor == Auth::user()->name)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->body }}</td>
                 <td>{{ $item->summary }}</td>
                 <td>{{ $item->publish_date }}</td>
-                <td>{{ $item->sections }}</td>
-                <td><img width="150px" src="{{ $item->image_address }}" alt="{{ $item->image_address }}"></td>
-                <td>{{ ($item->editor) }}</td>
+                <td>{{ implode("|",$section_show) }}</td>
+                {{--<td>{{ $item->sections }}</td>--}}
+                <td><img width="150px" src="{{ $image_path==''?($item->image_address): $image_path}}" alt="{{ $item->image_address }}"></td>
+                <td>{{ $item->editor }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ route('articleCRUD.show',$item->id) }}">Show</a>
                     @permission('article-edit')
@@ -52,6 +68,7 @@
                     @endpermission
                 </td>
             </tr>
+            @endif
         @endforeach
     </table>
     {!! $articles->render() !!}

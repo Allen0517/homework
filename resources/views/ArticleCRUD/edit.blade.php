@@ -21,7 +21,7 @@
             </ul>
         </div>
     @endif
-    {!! Form::model($article, ['method' => 'PATCH','route' => ['articleCRUD.update', $article->id]]) !!}
+    {!! Form::model($article, ['method' => 'PATCH','enctype'=>"multipart/form-data", 'route' => ['articleCRUD.update', $article->id]]) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
