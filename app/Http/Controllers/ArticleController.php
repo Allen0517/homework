@@ -16,14 +16,17 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
+//        $headline =
+//            Article::where('customer.name', 'LIKE', "%$findcustomer%")->firstOrFail();
+
         return view('news.main', [
             'articles' => $articles,
         ]);
     }
 
-    public function section()
+    public function section($sections)
     {
-        $articles = Article::all();
+        $articles = Article::where('sections', 'LIKE', "%$sections%")->get();
         return view('news.section', [
             'articles' => $articles,
         ]);
@@ -43,7 +46,7 @@ class ArticleController extends Controller
 
     public function article()
     {
-        $article = Article::find(1);
+        $article = Article::find(30);
         return view('news.article', [
             'article' => $article,
         ]);

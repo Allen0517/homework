@@ -45,7 +45,29 @@
                     $section_show[$value]= $section_full_array[$value];
                 }
             ?>
-            @if ($item->editor == Auth::user()->name)
+                @if (Auth::user()->name == "super_admin")
+                    <tr>
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $item->title }}</td>
+                        <td>{{ $item->body }}</td>
+                        <td>{{ $item->summary }}</td>
+                        <td>{{ $item->publish_date }}</td>
+                        <td>{{ $item->sections }}</td>
+                        <td><img width="150px" src="{{ $item->image_address }}" alt="{{ $item->image_address }}"></td>
+                        <td>{{ ($item->editor) }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ route('articleCRUD.show',$item->id) }}">Show</a>
+                            @permission('article-edit')
+                            <a class="btn btn-primary" href="{{ route('articleCRUD.edit',$item->id) }}">Edit</a>
+                            @endpermission
+                            @permission('article-delete')
+                            {!! Form::open(['method' => 'DELETE','route' => ['articleCRUD.destroy', $item->id],'style'=>'display:inline']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                            @endpermission
+                        </td>
+                    </tr>
+                @elseif ($item->editor == Auth::user()->name)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $item->title }}</td>

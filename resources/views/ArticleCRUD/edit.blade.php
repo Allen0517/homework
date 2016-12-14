@@ -68,7 +68,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Editor:</strong>
-                {!! Form::text('editor',null, array('placeholder' => 'Editor','class' => 'form-control')) !!}
+                {!! Form::hidden('editor',null, array('placeholder' => 'Editor','class' => 'form-control')) !!}
+                {{$article->editor}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

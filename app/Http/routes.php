@@ -14,22 +14,30 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::get('/','ArticleController@index');
-//Route::get('/section','ArticleController@section');
-//Route::get('/article','ArticleController@article');
-//Route::get('/jquery-loadmore',['as'=>'jquery-loadmore','uses'=>'ArticleController@loadMore']);
-//Route::auth();
-//
-//Route::get('/home', 'HomeController@index');
+Route::get('/news','ArticleController@index');
+Route::get('/news/sections/{section}','ArticleController@section');
+Route::get('/news/article','ArticleController@article');
+Route::get('/news/jquery-loadmore',['as'=>'jquery-loadmore','uses'=>'ArticleController@loadMore']);
+
+
+Route::get('/home', 'HomeController@index');
 
 
 Route::auth();
-
 Route::group(['middleware' => ['auth']], function() {
-
     Route::get('/home', 'HomeController@index');
-
     Route::resource('users','UserController');
+    /**
+     * User Permission
+     */
+    Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+    Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:role-create']]);
+    Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store','middleware' => ['permission:role-create']]);
+    Route::get('users/{id}',['as'=>'users.show','uses'=>'UserController@show']);
+    Route::get('users/{id}/edit',['as'=>'users.edit','uses'=>'UserController@edit','middleware' => ['permission:role-edit']]);
+    Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update','middleware' => ['permission:role-edit']]);
+    Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy','middleware' => ['permission:role-delete']]);
+
 
     Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
     Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);

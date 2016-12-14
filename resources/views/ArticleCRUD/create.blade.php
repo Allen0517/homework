@@ -68,7 +68,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Editor:</strong>
-                {!! Form::text('editor', null, array('placeholder' => 'Editor','class' => 'form-control')) !!}
+                <?php if (Auth::user()->name){$editor=Auth::user()->name;}?>
+                {!! Form::text('editor', $editor, array('placeholder' => $editor,'class' => 'form-control' )) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

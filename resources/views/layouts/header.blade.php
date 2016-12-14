@@ -3,7 +3,8 @@
 <div id="headerbar">
     <div class="container headerbarin">
         <div class="h_date  h_date1 pull-left">
-            <p>Sunday, Dec 11, 2016<p>
+            <?php $mytime = Carbon\Carbon::now();?>
+            <p>{{$mytime->format('d-m-Y')}}<p>
             <div class=" show_small sub_search pull-right">
                 <form class="navbar-form navbar-left sear_bar sear_subbar" role="search" action="/search.htm">
 

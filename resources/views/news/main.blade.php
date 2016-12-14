@@ -86,7 +86,7 @@
                     </ul>
                 </div>
                 <div class="menu_latest" id="menu_latest" style="min-height:700px;">
-                    @foreach ($articles as $article)
+                    @foreach ($articles as $key=>$article)
                         <div class="news-list">
                             <div class="row">
                                 <div class="col-sm-2 col-xs-5 newslist_img">

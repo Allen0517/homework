@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Article;
 use Illuminate\Support\Facades\Input;
@@ -18,7 +18,6 @@ class ArticleCRUDController extends Controller
     public function index(Request $request)
     {
         $articles = Article::orderBy('id','DESC')->paginate(5);
-
 
         return view('ArticleCRUD.index',compact('articles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
