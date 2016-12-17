@@ -21,7 +21,7 @@
 <!-- Header End -->
 <?php
 $image_name = $article->image;
-$section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');
+$section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business','gen'=>"University");
 if ($image_name!==''){
     $image_path = "http://localhost/olivetnews" . '/public/images/photo/'.$image_name;
 }else{

@@ -28,7 +28,7 @@ define("SITE_ADDRESS","http://localhost/olivetnews/");
         <div class="m_contentr sub_contentr">
             <div class="m_contentr1">
                 <div class="row">
-                    <?php $article[0] = $center_article[0];$article[1] = $center_article[1]; $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');?>
+                    <?php $article[0] = $center_article[0];$article[1] = $center_article[1]; $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business','gen'=>"University");?>
                     <div class="col-sm-8 clearfix">
                         <h1 class="category_theology">{{$section_full_array[$section]}}</h1>
                         <div clas="=&quot;row&quot;">

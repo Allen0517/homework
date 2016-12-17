@@ -26,7 +26,7 @@
                             <li class="m_it "><a href="http://localhost/olivetnews/public/news/sections/ocit" title="Olivet University IT">Engineering / IT </a></li>
                             <li class="m_lan "><a href="http://localhost/olivetnews/public/news/sections/lan"> Language Education </a></li>
                             <li class="m_bussiness "><a href="http://localhost/olivetnews/public/news/sections/ocb"> Business </a></li>
-                            <li class="m_university "><a href="http://localhost/olivetnews/public/news/sections/gen"> University </a></li>
+                            <li class="m_university "><a href="http://localhost/olivetnews/public/news"> University </a></li>
                         </ul>
                     </div>
                     <div class="menu_topic">

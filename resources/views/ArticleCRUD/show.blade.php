@@ -20,7 +20,7 @@
     }
     $section_show = array();
     $section_array = explode('|', $article->sections);
-    $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business');
+    $section_full_array = array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business','gen'=>'University');
     foreach($section_array as $value){
         $section_show[$value]= $section_full_array[$value];
     }

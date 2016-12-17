@@ -50,7 +50,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Sections:</strong>
-                {!! Form::select('sections[]', array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business'), null, array('multiple' => 'multiple','class' => 'form-control')) !!}
+                {!! Form::select('sections[]', array('otcs' => 'Theology', 'jcm' => 'Music','oacd' => 'Arts & Design', 'ocj' => 'Journalism','ocit' => 'Engineering/IT', 'lan' => 'Language Education','ocb' => 'Business','gen'=>'University'), null, array('multiple' => 'multiple','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -68,8 +68,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Editor:</strong>
-                {!! Form::hidden('editor',null, array('placeholder' => 'Editor','class' => 'form-control')) !!}
-                {{$article->editor}}
+                {!! Form::text('editor',$article->editor, array('placeholder' => 'Editor','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -11,15 +11,14 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('articles')->delete();
 
-        for ($i=0; $i < 20; $i++) {
+        for ($i=0; $i < 5; $i++) {
             \App\Article::create([
                 'title'   => 'Title: olivet news '.$i,
                 'body'    => 'Body: this is the body of'.$i.'article',
                 'summary'    => 'summary: this is the body of'.$i.'article',
                 'publish_date' => date("Y-m-d H:i:s",time()),
-                'sections' => "music",
+                'sections' => "ocb",
                 'image_address' => "http://www.olivetuniversity.edu/images_articles/files/jcm/b111.jpg",
                 'editor' => 'Allen',
             ]);

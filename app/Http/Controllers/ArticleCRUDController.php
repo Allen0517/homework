@@ -52,12 +52,9 @@ class ArticleCRUDController extends Controller
             $path = base_path() . '/public/images/photo/'.$imageName;
             if(!file_exists($path)){
                 $request->file('image')->move(base_path() . '/public/images/photo/', $imageName);
-                $article->image = $imageName;
-            }else{
-                return redirect()->route('articleCRUD.index')
-                    ->with('Fail','Article updated denied')->withErrors('Image exists！');
             }
         }
+        $article->image = $imageName;
         $article->title = $request->input('title');
         $article->body = $request->input('body');
         $article->summary = $request->input('summary');
@@ -115,12 +112,9 @@ class ArticleCRUDController extends Controller
             $path = base_path() . '/public/images/photo/'.$imageName;
            if(!file_exists($path)){
                $request->file('image')->move(base_path() . '/public/images/photo/', $imageName);
-               $article->image = $imageName;
-           }else{
-               return redirect()->route('articleCRUD.index')
-                   ->with('Fail','Article updated denied')->withErrors('Image exists！');
                }
             }
+        $article->image = $imageName;
         $article->title = $request->input('title');
         $article->body = $request->input('body');
         $article->summary = $request->input('summary');
