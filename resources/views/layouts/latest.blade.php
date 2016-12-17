@@ -43,9 +43,9 @@
             </div>
         @endforeach
 
-        <div class="next load_more"><a href="/jquery-loadmore">Load More ...</a></div>
+        <div class="next load_more"><a href="http://localhost/olivetnews/public/news/loadmore">Load More ...</a></div>
 
-        {{--@yield('content')--}}
+        @yield('content')
 
     </div>
 </div>

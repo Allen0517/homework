@@ -1,4 +1,4 @@
-@extends('news/main')
+@extends('layouts.latest')
 
 @section('content')
     <p>ajax</p>
@@ -16,8 +16,8 @@
     </style>
     <div class="wrapper">
         <ul id="results"><!-- results appear here --></ul>
-        <div class="ajax-loading"><img src="{{ asset('images/loading.gif') }}" /></div>
-        <div class="next load_more"><a href="jquery-loadmore">Load More ...</a></div>
+        {{--<div class="ajax-loading"><img src="{{ asset('images/loading.gif') }}" /></div>--}}
+        <div class="next load_more"><a href="http://localhost/olivetnews/public/news/loadmore">Load More ...</a></div>
     </div>
     <script>
         var page = 1; //track user scroll as page number, right now page number is 1
