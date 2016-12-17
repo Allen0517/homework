@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(6);
+        $articles = Article::all();
         $top_articles = Article::where('image', '!=', '')->paginate(3);
 
         return view('news.main', [
@@ -27,11 +27,7 @@ class ArticleController extends Controller
     public function section($sections)
     {
         $articles = Article::where('sections', 'LIKE', "%$sections%")->get();
-
-//        if (empty($articles)){
-//            return back()->withInput();
-//        }
-        $center_articles = Article::where('sections', 'LIKE', "%$sections%")->where('image', '!=', '')->get();
+        $center_articles = Article::where('sections', 'LIKE', "%$sections%")->where('image', '!=', ' ')->get();
 
         return view('news.section', [
             'section' => $sections,

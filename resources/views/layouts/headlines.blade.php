@@ -5,7 +5,7 @@
         @foreach($articles as $key=>$article)
         <li class="m_theology">
             <div class="headline_text">
-                <h5><a href="/article/{{$article->id}}">{{$article->title}}</a></h5>
+                <h5><a href="http://localhost/olivetnews/public/news/article/{{$article->id}}">{{$article->title}}</a></h5>
                 <span></span>
             </div>
         </li>

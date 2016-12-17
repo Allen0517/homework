@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2016 at 02:19 AM
+-- Generation Time: Dec 17, 2016 at 03:31 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.6.28
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `articles`
@@ -57,7 +57,9 @@ INSERT INTO `articles` (`id`, `title`, `body`, `summary`, `publish_date`, `secti
 (48, 'asdfas', 'asdf', 'asdfasd', '0000-00-00', 'otcs|jcm|oacd|ocj|ocit|lan|ocb|gen', '108244.jpeg', 'adfasdf', 'Allen', '2016-12-14 04:21:42', '2016-12-17 04:09:56'),
 (49, 'sdfas', 'asdfasdfas', 'asdfasdf', '2016-12-13', 'otcs|jcm|oacd|ocj|ocit|lan|ocb|gen', '109058.jpeg', 'asdfasdf', 'huchao', '2016-12-14 04:22:14', '2016-12-17 04:09:20'),
 (50, 'asdfasd', 'asdfas', 'asdfasdf', '0000-00-00', 'otcs|jcm', '106593.jpeg', 'asdfas', 'allen', '2016-12-14 04:24:19', '2016-12-15 03:12:45'),
-(51, 'sdfgsdfgsdfg', 'sdfgsdfgsdfg', 'sdfgsdfgdsfgdsfg', '2016-12-06', 'otcs|jcm|oacd|ocj|ocit|lan|ocb|gen', '108246.jpeg', 'www.baidu.com', 'Allen', '2016-12-17 04:13:13', '2016-12-17 04:13:13');
+(51, 'sdfgsdfgsdfg', 'sdfgsdfgsdfg', 'sdfgsdfgdsfgdsfg', '2016-12-06', 'otcs|jcm|oacd|ocj|ocit|lan|ocb|gen', '108246.jpeg', 'www.baidu.com', 'Allen', '2016-12-17 04:13:13', '2016-12-17 04:13:13'),
+(53, '1111111111111111111111111', '111111111111111111111111', '111111111111111111111', '2016-12-07', 'otcs|oacd', '108247.jpeg', 'www.baidu.com', 'Sophia', '2016-12-17 05:27:04', '2016-12-17 05:27:04'),
+(54, 'dfgasdfgs', 'sdfgsdfgsdfg', 'sdfgsdfg', '2016-12-14', 'otcs|oacd', '106591.jpeg', 'asdfasdf  ', 'HuChao', '2016-12-17 05:29:45', '2016-12-17 05:29:45');
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `items`
@@ -217,8 +219,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Editor', 'Editor Role', '2016-12-13 03:01:30', '2016-12-17 03:24:23'),
-(2, 'tester', 'Tester', 'Tester Role', '2016-12-13 03:01:30', '2016-12-13 03:01:30'),
-(3, 'super_admin', 'Administor', 'Administor Role', '2016-12-13 03:01:30', '2016-12-17 03:23:54');
+(3, 'super_admin', 'Administor', 'Administor Roles', '2016-12-13 03:01:30', '2016-12-17 05:26:17');
 
 -- --------------------------------------------------------
 
@@ -238,8 +239,8 @@ CREATE TABLE IF NOT EXISTS `role_user` (
 --
 
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
-(2, 1),
 (3, 1),
+(4, 1),
 (1, 3);
 
 -- --------------------------------------------------------
@@ -258,16 +259,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'administer', 'hclovejesus@gmail.com', '$2y$10$1fg6VuE3fULtFOJ9ndBzUekxunuPCNfHJSHviOQuWFFl5RY4xyhfS', 'oW95U17NRf9FMx9o8LV2cf1lDSD3cw2Ftbesl7C23V3uUp7jsXIw8H7MRXVU', '2016-12-13 04:14:50', '2016-12-17 03:51:14'),
-(2, 'allen', 'heiswith@gmail.com', '$2y$10$6Mr4BHhXtHhKC3lhnmqvAedmA9A2ZqB3af/W5iVOChJTcZhf2sbaG', 'IYBOadGP1Qc65fOHRZoOcB0coItAKqiXs5QtsEceAlVsQLrN58e73lto4pQB', '2016-12-14 03:50:46', '2016-12-14 03:51:36'),
-(3, 'huchao', 'editor@gmail.com', '$2y$10$.RErqzxfX2XoeQUm.v.7/eIs/fnHCOPCTftC86iQQCTt.p6xEWSHW', 'dGwGsldGq4cyGUGmshI2g8Q1rI4pwYD5fdtvEpGk8x4mbZoljUlJiqIz8bq1', '2016-12-17 03:50:14', '2016-12-17 03:56:41');
+(1, 'administer', 'hclovejesus@gmail.com', '$2y$10$1fg6VuE3fULtFOJ9ndBzUekxunuPCNfHJSHviOQuWFFl5RY4xyhfS', '9TsfkIJ6m1qzbkjRdIpB1VsMjvaqZVNvrsZB4pWgiuo4mUq2otbAHNxDTcu5', '2016-12-13 04:14:50', '2016-12-17 05:28:10'),
+(3, 'HuChao', 'editor@gmail.com', '$2y$10$.RErqzxfX2XoeQUm.v.7/eIs/fnHCOPCTftC86iQQCTt.p6xEWSHW', 'VGjUNYMxLLa70afIGfQYR2UmU0ljYgQ5Omx4LrBoY2LwObqJ8QQO0Lxmq0tS', '2016-12-17 03:50:14', '2016-12-17 05:30:06'),
+(4, 'Sophia', 'maineditor@gmail.com', '$2y$10$apVb7u6pVAvJFaKg3DIJ7eWXA8jIGjH.CVBfVJVYbR/Ic3JWH2A62', NULL, '2016-12-17 05:25:51', '2016-12-17 05:25:51');
 
 --
 -- Constraints for dumped tables

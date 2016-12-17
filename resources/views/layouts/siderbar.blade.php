@@ -22,7 +22,7 @@
                             <li class="m_theology "><a href="http://localhost/olivetnews/public/news/sections/otcs" title="Olivet University Theology">Theology</a></li>
                             <li class="m_music "><a href="http://localhost/olivetnews/public/news/sections/jcm" title="Olivet University Music">Music</a></li>
                             <li class="m_jour "><a href="http://localhost/olivetnews/public/news/sections/ocj" title="Olivet University Jounalism">Journalism</a></li>
-                            <li class="m_artd "><a href="http://localhost/olivetnews/public/news/sections/ocad" title="Olivet University Arts & Design">Arts &amp; Design</a></li>
+                            <li class="m_artd "><a href="http://localhost/olivetnews/public/news/sections/oacd" title="Olivet University Arts & Design">Arts &amp; Design</a></li>
                             <li class="m_it "><a href="http://localhost/olivetnews/public/news/sections/ocit" title="Olivet University IT">Engineering / IT </a></li>
                             <li class="m_lan "><a href="http://localhost/olivetnews/public/news/sections/lan"> Language Education </a></li>
                             <li class="m_bussiness "><a href="http://localhost/olivetnews/public/news/sections/ocb"> Business </a></li>

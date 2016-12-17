@@ -55,6 +55,12 @@ foreach($section_array as $value){
                                 <div class="item active">
                                     <img src="{{ $image_path==''?($article->image_address): $image_path}}" alt="{{ $article->image_address }}" class="img-responsive">
                                 </div>
+                                <div class="item">
+                                    <img src="{{ $image_path==''?($article->image_address): $image_path}}" alt="{{ $article->image_address }}" class="img-responsive">
+                                </div>
+                                <div class="item">
+                                    <img src="{{ $image_path==''?($article->image_address): $image_path}}" alt="{{ $article->image_address }}" class="img-responsive">
+                            </div>
                             </div>
 
                             <!-- Indicators -->
